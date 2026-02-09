@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Железный человек</title>
+        <link rel="stylesheet" href="../css/playerStyle.css">
+        <script src="../js/player.js" defer></script>
+    </head>
+    <body>
+        <div class="player" id="player">
+            
+            <video id="video" src="" playsinline autoplay>
+            </video>
+            <a href="index.html" id="exitBtn">&times;</a>
+            <span id="ageRating" class="hidden" >18+</span>
+            <img src="" id="film_logo" class="film_logo">
+            <div class="btns" id="btns">
+                <a href="#" id="Watch" class="univ_btn" >Смотреть заставку</a>
+                <a href="#" id="universalBtn" class="univ_btn">Пропустить</a>
+            </div>
+            <div class="controls" id="controls">
+                <div id="seek_container">
+                    <input type="range" id="seek" min="0" value="0" max="1" step="0.01">
+                    <span id="time">—0:00</span>
+                </div>
+                    <a href="#" id="playBtn">⏸</a>
+                    <div id="innerVolBtn">
+                        <a href="#" id="volumeBtn">📢</a>
+                        <input type="range" id="volumeSeek" min="0" value="0" step="1" class="hidden">
+                    </div>
+                     <a href="#" id="sizeChangeBtn">⛶</a>
+            </div>
+        </div>
+    </body>
+</html>
