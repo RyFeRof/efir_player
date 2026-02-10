@@ -13,7 +13,7 @@
             </video>
             <a href="index.html" id="exitBtn">&times;</a>
             <span id="ageRating" class="hidden" >18+</span>
-            <img src="" id="film_logo" class="film_logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Seishun_Buta_Yarou_logo.png" id="film_logo" class="film_logo">
             <div class="btns" id="btns">
                 <a href="#" id="Watch" class="univ_btn" >Смотреть заставку</a>
                 <a href="#" id="universalBtn" class="univ_btn">Пропустить</a>
@@ -23,12 +23,32 @@
                     <input type="range" id="seek" min="0" value="0" max="1" step="0.01">
                     <span id="time">—0:00</span>
                 </div>
-                    <a href="#" id="playBtn">⏸</a>
-                    <div id="innerVolBtn">
-                        <a href="#" id="volumeBtn">📢</a>
-                        <input type="range" id="volumeSeek" min="0" value="0" step="1" class="hidden">
+                <div id="other_contain">
+                    <div id="left_side">
+                         <a href="#"  id="playBtn">
+                            <div class="btn_ico" id="playBtnIco" style="--icon-path:url('../assets/player_images/play.svg')"></div>
+                        </a>
+                        <div id="innerVolBtn">
+                            <a href="#" id="volumeBtn">
+                                <div class="btn_ico"  style="--icon-path: url('../assets/player_images/dinamic.svg')"></div>
+                            </a>
+                            <input type="range" id="volumeSeek" min="0" value="0" step="1" class="hidden">
+                        </div>
                     </div>
-                     <a href="#" id="sizeChangeBtn">⛶</a>
+                    <div id="right_side">
+                        <a href="#" id="sizeChangeBtn">
+                            <div class="help_toggle_btn_div">
+                                 <div class="btn_toggle_ico" id="toggle-btn-up-arrow"></div>
+                            </div>
+                            <div class="help_toggle_btn_div" style="flex-direction: row;">
+                                <div class="btn_toggle_ico" id="toggle-btn-down-arrow" style="transform: rotate(180deg);"></div>
+                            </div>
+                            
+                        </a>
+                    </div>
+                </div>
+                   
+                     
             </div>
         </div>
     </body>

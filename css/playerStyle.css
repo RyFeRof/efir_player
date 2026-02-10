@@ -45,7 +45,7 @@ body{
     display: flex;
     position: absolute;
     right: 3%;
-    bottom:55px;
+    bottom:88px;
     transition: right 0.2s ease,opacity 0.2s ease;
 }
 .btns.hidden{
@@ -104,9 +104,6 @@ body{
 }
 #innerVolBtn{
     display: flex;
-    position: absolute;
-    bottom: 1.05%;
-    left: 4%;
     align-items: center;
 }
 #volumeSeek{
@@ -121,16 +118,30 @@ body{
 #volumeSeek.hidden{
     margin-left: 0;
     pointer-events: none;
-    opacity: 0;
-    display: none;
+    opacity:0;
 }
 #volumeBtn{
-    font-size: 20px;
-    color: #fff;
     margin-right: 0px;
 }
+#other_contain{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+#left_side{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+#right_side{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
 #ageRating{
-    font-size: 24px;
+    font-size: 32px;
+    padding: 4px;
+    border: 3px solid #fff;
     position: absolute;
     color:#fff;
     left:1.05%;
@@ -140,30 +151,50 @@ body{
 }
 #ageRating.hidden{
     opacity: 0;
+    pointer-events: none;
     top:0
 }
 #seek_container{
     width:100vw;
     display: flex;
-    padding-bottom:1.7%;
-    bottom: 3%;
+    padding-bottom:0.4%;
 }
-
 #time{
     margin:0 14px;
     font-size: 20px;
 }
-#playBtn{
-    position: absolute;
-    bottom:1.05%;
-    text-align: center;
-    left:1.5%;
-    font-size: 28px;
-}
 #sizeChangeBtn{
-    position: absolute;
-    font-size: 28px;
-    right: 1.05%;
-    bottom: 1.05%;
+    width: 28.5px;
+    height: 25px;
+    padding: 6px;
+}
+.btn_ico{
+    width:25px;
+    height: 25px;
+    background-color: #fffffff4;
+    mask-image: var(--icon-path);
+    mask-size: auto;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transition: all 0.3s ease;
+    padding: 6px;
+}
+.btn_toggle_ico{
+    width:14px;
+    height: 14px;
+    background-color: #fffffff4;
+    mask-image: url('../assets/player_images/toggleOn.svg');
+    mask-size: auto;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transition: all 0.3s ease;
+}
+.help_toggle_btn_div{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.btn_ico:hover{
+    background-color:#ffffffc3;
 }
 

@@ -17,6 +17,9 @@ const volumeSeek=document.getElementById("volumeSeek")
 const volumeBtn=document.getElementById("volumeBtn")
 const innerVolBtn=document.getElementById("innerVolBtn")
 const ARBtn=document.getElementById("ageRating")
+const playBtnIco=document.getElementById("playBtnIco")
+const toggleDownArrow=document.getElementById("toggle-btn-down-arrow")
+const toggleUpWrrow=document.getElementById("toggle-btn-up-arrow")
 const SEEK_STEP=10
 let hideTimer=0
 console.log("Ошибка?")
@@ -48,7 +51,9 @@ function  time_parse(t){
     return res
 }
 function synchPlayer(){
-    playBtn.textContent=video.paused?"►":"⏸"
+    if(video.paused) playBtnIco.style="--icon-path:url('../assets/player_images/play.svg')"
+    else playBtnIco.style="--icon-path:url('../assets/player_images/pause.svg')"
+    
 }
 synchPlayer()
 playBtn.addEventListener("click",()=>{
@@ -104,10 +109,17 @@ function isFoolScreen(){
 }
 async function toggleFullScreen() {
     try{
-        if(!isFoolScreen())
+        if(!isFoolScreen()){
             await player.requestFullscreen()
-        else
+            toggleDownArrow.style=""
+            toggleUpWrrow.style="transform:rotate(180deg)"
+        }
+        else{
             await document.exitFullscreen()
+            toggleUpWrrow.style=""
+            toggleDownArrow.style="transform:rotate(180deg)"
+        }
+            
     }
     catch (e){
         console.error("Ошибка полноэкранного режима: ",e)
