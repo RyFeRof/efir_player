@@ -25,6 +25,12 @@ const SEEK_STEP=10
 let IsWatchBtnClick=false
 let hideTimer=0
 console.log("Ошибка?")
+volumeSeek.addEventListener("mouseover",()=>{
+    volumeSeek.classList.remove("hidden")
+})
+volumeSeek.addEventListener("mouseleave",()=>{
+    volumeSeek.classList.add("hidden")
+})
 innerVolBtn.addEventListener("mouseover",()=>{
     volumeSeek.classList.remove("hidden")
 })
