@@ -5,10 +5,10 @@ const seek=document.getElementById("seek")
 const timer=document.getElementById("time")
 const controls=document.getElementById("controls")
 const HIDE_DILEY=4000//через сколько будет скрыта панель управления
-const startInto=time_parse("1") //тайминг начала интро
-const endIntro=time_parse("1800")  // тайминг конца интро
-const startTitles=time_parse("3600") // тайминг начала титров
-const endTitles=time_parse("4800") // тайминг конца титров
+const startInto=time_parse("0") //тайминг начала интро
+const endIntro=time_parse("5")  // тайминг конца интро
+const startTitles=time_parse("3295") // тайминг начала титров
+const endTitles=time_parse("3340") // тайминг конца титров
 const skipBtn=document.getElementById("universalBtn")
 const divBtns=document.getElementById("btns")
 const film_logo=document.getElementById("film_logo")
@@ -20,7 +20,9 @@ const ARBtn=document.getElementById("ageRating")
 const playBtnIco=document.getElementById("playBtnIco")
 const toggleDownArrow=document.getElementById("toggle-btn-down-arrow")
 const toggleUpWrrow=document.getElementById("toggle-btn-up-arrow")
+const watchBtn=document.getElementById("Watch")
 const SEEK_STEP=10
+let IsWatchBtnClick=false
 let hideTimer=0
 console.log("Ошибка?")
 innerVolBtn.addEventListener("mouseover",()=>{
@@ -31,14 +33,43 @@ innerVolBtn.addEventListener("mouseleave",()=>{
 })
 volumeSeek.addEventListener("change",()=>{
     video.volume=Number(volumeSeek.value)/100
+    const percent = volumeSeek.value / volumeSeek.max * 100 + "%";
+    volumeSeek.style.setProperty("--valueDinamic", percent);
+})
+volumeSeek.addEventListener("input",()=>{
+    const percent = volumeSeek.value / volumeSeek.max * 100 + "%";
+    volumeSeek.style.setProperty("--valueDinamic", percent);
 })
 function updateUniversalBtns(time){
     const t=Number.isFinite(time)?time:video.currentTime
-    let shouldShow=(t>=startTitles && t<endTitles)||(t>=startInto && t<endIntro)
+    let shouldShow=false
+    if(t>=startInto && t<=endIntro){
+        if(!IsWatchBtnClick){
+            shouldShow=true
+            skipBtn.textContent="Пропустить"
+            watchBtn.textContent="Смотреть заставку"
+        }
+    }
+    else if(t>=startTitles && t<=endTitles){
+        if(!IsWatchBtnClick){
+            shouldShow=true
+            skipBtn.textContent="Следующая серия"
+            watchBtn.textContent="Смотреть титры"
+        }
+    }
+    else IsWatchBtnClick=false
    divBtns.classList.toggle("hidden",!shouldShow)
+
 }
+watchBtn.addEventListener("click",()=>{
+    divBtns.classList.add("hidden")
+    IsWatchBtnClick=true
+})
 skipBtn.addEventListener("click",()=>{
-    const target=Math.min(endIntro,Number.isFinite(video.duration)?video.duration:endIntro)
+    let target=0
+    if(Number.isFinite(video.duration))
+        if(video.currentTime>=endIntro)target=endTitles
+        else target=endIntro
     video.currentTime=target
     updateUniversalBtns(true)
 })
@@ -64,7 +95,7 @@ playBtn.addEventListener("click",()=>{
     synchPlayer()
 })
 video.addEventListener("pause",synchPlayer)
-video.addEventListener("play",addEventListener)
+video.addEventListener("play",synchPlayer)
 function fmt(sec){
     sec=Math.floor(sec)
     const h=Math.floor(sec/3600)
@@ -75,6 +106,8 @@ function fmt(sec){
 function loadedmetadata(){
     seek.max=video.duration
     volumeSeek.value=volumeSeek.max
+    const percent = volumeSeek.value / volumeSeek.max * 100 + "%";
+    volumeSeek.style.setProperty("--valueDinamic", percent);
     timer.textContent=fmt(video.duration-video.currentTime)
     updateUniversalBtns()
 }
@@ -82,14 +115,19 @@ let isSeeking=false
 video.addEventListener("timeupdate",()=>{
     if(!isSeeking) seek.value=video.currentTime
     timer.textContent=fmt(video.duration-seek.value)
+    const percent = seek.value / seek.max * 100 + "%";
+    seek.style.setProperty("--value", percent);
     updateUniversalBtns()
 })
 seek.addEventListener("input",()=>{
+    const percent = seek.value / seek.max * 100 + "%";
+    seek.style.setProperty("--value", percent);
     isSeeking=true
     timer.textContent=fmt(video.duration-seek.value)
     updateUniversalBtns()
 })
 seek.addEventListener("change",()=>{
+    
     isSeeking=false
     video.currentTime=seek.value
     timer.textContent=fmt(video.duration-seek.value)

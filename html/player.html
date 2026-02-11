@@ -2,25 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Железный человек</title>
+        <title>Приговорённый быть героем</title>
         <link rel="stylesheet" href="../css/playerStyle.css">
         <script src="../js/player.js" defer></script>
     </head>
     <body>
         <div class="player" id="player">
-            
-            <video id="video" src="" playsinline autoplay>
+            <video id="video" src="../assets/player/Приговоренный быть героем/1.mp4" playsinline autoplay>
             </video>
             <a href="index.html" id="exitBtn">&times;</a>
             <span id="ageRating" class="hidden" >18+</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Seishun_Buta_Yarou_logo.png" id="film_logo" class="film_logo">
+            <img src="//avatars.mds.yandex.net/get-ott/17687051/2a0000019b6ae0fbacf7466be53b49818c8f/960x540" id="film_logo" class="film_logo">
             <div class="btns" id="btns">
                 <a href="#" id="Watch" class="univ_btn" >Смотреть заставку</a>
                 <a href="#" id="universalBtn" class="univ_btn">Пропустить</a>
             </div>
             <div class="controls" id="controls">
                 <div id="seek_container">
-                    <input type="range" id="seek" min="0" value="0" max="1" step="0.01">
+                    <input type="range" class="range" id="seek" min="0" value="0" max="1" step="0.01">
                     <span id="time">—0:00</span>
                 </div>
                 <div id="other_contain">
@@ -32,7 +31,7 @@
                             <a href="#" id="volumeBtn">
                                 <div class="btn_ico"  style="--icon-path: url('../assets/player_images/dinamic.svg')"></div>
                             </a>
-                            <input type="range" id="volumeSeek" min="0" value="0" step="1" class="hidden">
+                            <input type="range" id="volumeSeek" min="0" max="100" value="0" step="1" class="hidden">
                         </div>
                     </div>
                     <div id="right_side">
@@ -42,13 +41,10 @@
                             </div>
                             <div class="help_toggle_btn_div" style="flex-direction: row;">
                                 <div class="btn_toggle_ico" id="toggle-btn-down-arrow" style="transform: rotate(180deg);"></div>
-                            </div>
-                            
+                            </div>   
                         </a>
                     </div>
-                </div>
-                   
-                     
+                </div>    
             </div>
         </div>
     </body>
