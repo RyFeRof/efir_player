@@ -21,10 +21,20 @@ const playBtnIco=document.getElementById("playBtnIco")
 const toggleDownArrow=document.getElementById("toggle-btn-down-arrow")
 const toggleUpWrrow=document.getElementById("toggle-btn-up-arrow")
 const watchBtn=document.getElementById("Watch")
+const forwardArrow=document.getElementById("forwardArrow")
+const backArrow=document.getElementById("backArrow")
 const SEEK_STEP=10
 let IsWatchBtnClick=false
 let hideTimer=0
 console.log("Ошибка?")
+forwardArrow.addEventListener("click",()=>{
+    if(SEEK_STEP+video.currentTime<=video.duration) video.currentTime+=SEEK_STEP
+    else video.currentTime=video.duration
+})
+backArrow.addEventListener("click",()=>{
+    if(video.currentTime-SEEK_STEP>=0) video.currentTime-=SEEK_STEP
+    else video.currentTime=0
+})
 innerVolBtn.addEventListener("mouseover",()=>{
     volumeSeek.classList.remove("hidden")
 })
